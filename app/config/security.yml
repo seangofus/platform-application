@@ -41,22 +41,22 @@ security:
             context:                        main
 
         login:
-            pattern:                        ^/user/(login|reset-request|send-email|check-email)$
+            pattern:                        ^/admin/user/(login|reset-request|send-email|check-email)$
             provider:                       chain_provider
             anonymous:                      true
 
         reset_password:
-            pattern:                        ^/user/reset/*
+            pattern:                        ^/admin/user/reset/*
             provider:                       chain_provider
             anonymous:                      true
 
         embedded_form:
-            pattern:                        ^/embedded-form/(submit|success)
+            pattern:                        ^/admin/embedded-form/(submit|success)
             provider:                       chain_provider
             anonymous:                      true
 
         main:
-            pattern:                        ^/
+            pattern:                        ^/admin/
             provider:                       chain_provider
             form_login:
                 csrf_provider:              form.csrf_provider
@@ -72,5 +72,4 @@ security:
             anonymous:                      false
 
     access_control:
-        - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/api/rest/(latest|v1)/pinbars, role: ROLE_USER }

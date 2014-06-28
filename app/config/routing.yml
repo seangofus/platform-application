@@ -16,10 +16,11 @@ _imagine:
 # ORO routes
 #
 oro_default:
-    pattern:  /
+    pattern:  /admin/
     defaults:
         _controller: OroDashboardBundle:Dashboard:view
 
 oro_auto_routing:
+    prefix:   /admin
     resource: .
     type:     oro_auto
