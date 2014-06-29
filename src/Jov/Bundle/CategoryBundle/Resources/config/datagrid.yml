@@ -1,0 +1,67 @@
+datagrid:
+    jov-category-grid:
+        options:
+            entityHint: tag
+        source:
+            acl_resource: oro_tag_view
+            type: orm
+            query:
+                select:
+                    - c
+                from:
+                    - { table: JovCategoryBundle:Category, alias: c }
+
+        columns:
+            name:
+                label: jov.category.name.label
+                type: field
+                frontend_type: string
+            slug:
+                label: jov.category.slug.label
+                type: field
+                frontend_type: string
+
+        properties:
+            id: ~
+            update_link:
+                type: url
+                route: jov_category_update
+                params:
+                    - id
+            view_link:
+                type: url
+                route: jov_category_view
+                params:
+                    - id
+        sorters:
+            columns:
+                name:
+                    data_name: c.name
+                slug:
+                    data_name: c.slug
+            default:
+                name: %oro_datagrid.extension.orm_sorter.class%::DIRECTION_DESC
+
+        filters:
+            columns:
+                name:
+                    type: string
+                    data_name: c.name
+                slug:
+                    type: string
+                    data_name: c.slug
+
+        actions:
+            view:
+                type:          navigate
+                label:         View
+                link:          view_link
+                icon:          eye
+                acl_resource:  jov_category_view
+                rowAction:     true
+            update:
+                type:          navigate
+                label:         Update
+                link:          update_link
+                icon:          edit
+                acl_resource:  jov_category_update
