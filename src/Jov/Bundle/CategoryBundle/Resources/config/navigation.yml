@@ -1,0 +1,25 @@
+oro_menu_config:
+    items:
+        ## MOVE THIS NODE OUT TO IT'S OWN LATER...
+        posts:
+            uri: '#'
+            label: 'Posts'
+            route: ~
+            extras:
+                position: 15
+                description: List of blog posts
+
+        categories:
+            label: jov.category.entity_plural_label
+            route: jov_category
+            extras:
+                position: 10
+                description: List of processor entries
+
+    tree:
+        application_menu:
+            children:
+                posts:
+                    merge_strategy: append
+                    children:
+                        categories: ~
