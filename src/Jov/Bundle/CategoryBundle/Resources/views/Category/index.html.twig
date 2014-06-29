@@ -1,0 +1,13 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+{% set gridName = 'jov-category-grid' %}
+{% set pageTitle = 'jov.category.entity_plural_label'|trans %}
+
+{% block navButtons %}
+    {% if resource_granted('jov_category_create') %}
+        {{ UI.addButton({
+            'path': path('jov_category_create'),
+            'entity_label': 'jov.category.entity_label'|trans
+        }) }}
+    {% endif %}
+{% endblock %}
