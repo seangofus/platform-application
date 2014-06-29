@@ -1,0 +1,16 @@
+jov:
+    category:
+        entity_label: Category
+        entity_plural_label: Categories
+        id:
+            label: Category ID
+        name:
+            label: Category Name
+        slug:
+            label: Category Slug
+        description:
+            label: Category Description
+        created_at:
+            label: Created At
+        updated_at:
+            label: Updated At
