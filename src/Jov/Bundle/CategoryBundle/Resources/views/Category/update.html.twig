@@ -1,0 +1,72 @@
+{% extends 'OroUIBundle:actions:update.html.twig' %}
+{% oro_title_set({params : { "%entity.id%": entity.id }}) %}
+{% set entityId = entity.id %}
+{% set formAction = entityId ? path('jov_category_update', { 'id': entityId }) : path('jov_category_create') %}
+
+{% block navButtons %}
+    {% set html = UI.saveAndCloseButton() %}
+    {% if resource_granted('jov_category_update') %}
+        {% set html = html ~ UI.saveAndStayButton() %}
+    {% endif %}
+    {{ UI.dropdownSaveButton({'html': html}) }}
+    {{ UI.cancelButton(path('jov_category')) }}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% if entityId %}
+        {% set breadcrumbs = {
+            'entity': entity,
+            'indexPath': path('jov_category'),
+            'indexLabel': 'jov.category.entity_plural_label'|trans,
+            'entityTitle': 'Edit Category'
+        } %}
+        {{ parent() }}
+    {% else %}
+        {% set title = 'Create Category' %}
+        {% include 'OroUIBundle::page_title_block.html.twig' with { title: title } %}
+    {% endif %}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    {% set id = 'category-form' %}
+
+    {% set dataBlocks = [
+        {
+            'title': 'General',
+            'class': 'active',
+            'subblocks': [
+                {
+                    'data': [
+                        form_row(form.owner),
+                        form_row(form.name),
+                        form_row(form.slug),
+                        form_row(form.description)
+                    ]
+                }
+            ]
+        }
+    ]%}
+
+    {# This is required to show extended fields #}
+    {% if form.additional is defined and form.additional.children|length > 0 %}
+        {% set additionalData = [] %}
+        {% for value in form.additional %}
+            {% set additionalData = additionalData|merge([form_row(value)]) %}
+        {% endfor %}
+
+        {% set dataBlocks = dataBlocks|merge([{
+            'title': 'orocrm.task.block.additional'|trans,
+            'subblocks': [{
+                'title': '',
+                'useSpan': false,
+                'data' : additionalData
+            }]
+        }] ) %}
+    {% endif %}
+
+    {% set data = {
+        'formErrors': form_errors(form)? form_errors(form) : null,
+        'dataBlocks': dataBlocks,
+    } %}
+    {{ parent() }}
+{% endblock content_data %}
