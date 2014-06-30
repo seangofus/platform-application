@@ -72,6 +72,13 @@ class Category
     protected $updatedAt;
 
     /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Oro\Bundle\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_owner_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $owner;
+
+    /**
      * Get id
      *
      * @return integer
@@ -149,7 +156,7 @@ class Category
     {
         return $this->description;
     }
-    
+
     /**
      * @param \DateTime $createdAt
      */
@@ -196,5 +203,24 @@ class Category
     public function preUpdate()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param User $owningUser
+     * @return Category
+     */
+    public function setOwner($owningUser)
+    {
+        $this->owner = $owningUser;
+
+        return $this;
     }
 }
