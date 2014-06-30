@@ -20,6 +20,22 @@ class CategoryType extends AbstractType
                 'label'    => 'jov.category.name.label',
                 'required' => true
             )
+        )
+        ->add(
+            'slug',
+            'text',
+            array(
+                'label'    => 'jov.category.slug.label',
+                'required' => true
+            )
+        )
+        ->add(
+            'description',
+            'textarea',
+            array(
+                'label'    => 'jov.category.description.label',
+                'required' => false
+            )
         );
     }
 
