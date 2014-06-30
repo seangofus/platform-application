@@ -122,10 +122,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * @return FollowUpType
+     * @return CategoryType
      */
     protected function getFormType()
     {
-        return $this->get('jov.form.type.category');
+        return $this->get('jov_category.form.type.category');
     }
 }
