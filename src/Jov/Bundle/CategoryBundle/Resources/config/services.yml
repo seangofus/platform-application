@@ -1,7 +1,7 @@
 parameters:
-    jov.form.type.category.class: Jov\Bundle\CategoryBundle\Form\Type\CategoryType
+    jov_category.form.type.category.class: Jov\Bundle\CategoryBundle\Form\Type\CategoryType
 
 services:
-    jov.form.type.category:
-        class: %jov.form.type.category.class%
+    jov_category.form.type.category:
+        class: %jov_category.form.type.category.class%
         arguments: [ @security.context ]
