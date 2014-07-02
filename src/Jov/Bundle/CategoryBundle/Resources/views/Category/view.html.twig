@@ -13,7 +13,7 @@
     {% if resource_granted('DELETE', entity) %}
         {{ UI.deleteButton({
             'dataUrl': path('jov_api_delete_category', {'id': entity.id}),
-            'dataRedirect': path('ae_category'),
+            'dataRedirect': path('jov_category'),
             'aCss': 'no-hash remove-button',
             'id': 'btn-remove-follow-up',
             'dataId': entity.id,
@@ -27,7 +27,7 @@
         'entity': entity,
         'indexPath': path('jov_category'),
         'indexLabel': 'jov.category.entity_plural_label'|trans,
-        'entityTitle': 'Category ' ~ entity.id
+        'entityTitle': entity.name
     } %}
     {{ parent() }}
 {% endblock pageHeader %}
@@ -44,11 +44,11 @@
 
     {% set dataBlocks = [
         {
-            'title': 'Category ' ~ entity.id,
+            'title': entity.name,
             'class': 'active',
             'subblocks': [
                 {
-                    'title': 'Entry Info',
+                    'title': 'Category Info',
                     'data' : [ categoryInfo ]
                 }
             ]
