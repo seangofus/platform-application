@@ -43,19 +43,19 @@ class Category
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="text", nullable=false)
+     * @ORM\Column(name="name", type="string", nullable=false)
      */
     private $name;
 
     /**
      * @var string
-     * @ORM\Column(name="slug", type="text", nullable=false)
+     * @ORM\Column(name="slug", type="string", nullable=false)
      */
     private $slug;
 
     /**
      * @var string
-     * @ORM\Column(name="desc", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
