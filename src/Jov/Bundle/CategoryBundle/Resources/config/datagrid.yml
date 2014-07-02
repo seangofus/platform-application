@@ -56,7 +56,7 @@ datagrid:
                 type:          navigate
                 label:         View
                 link:          view_link
-                icon:          eye
+                icon:          eye-open
                 acl_resource:  jov_category_view
                 rowAction:     true
             update:
