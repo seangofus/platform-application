@@ -45,7 +45,7 @@ class CategoryController extends RestController implements ClassResourceInterfac
      */
     public function getManager()
     {
-        return $this->get('oro_tag.tag.manager.api');
+        return $this->get('jov_category.category.manager.api');
     }
 
     /**
@@ -53,7 +53,7 @@ class CategoryController extends RestController implements ClassResourceInterfac
      */
     public function getForm()
     {
-        return $this->get('oro_tag.form.tag.api');
+        return $this->get('jov_category.form.category.api');
     }
 
     /**
@@ -61,6 +61,6 @@ class CategoryController extends RestController implements ClassResourceInterfac
      */
     public function getFormHandler()
     {
-        return $this->get('oro_tag.form.handler.api');
+        return $this->get('jov_category.form.handler.api');
     }
 }
