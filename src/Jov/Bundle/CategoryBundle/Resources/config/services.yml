@@ -1,7 +1,30 @@
 parameters:
     jov_category.form.type.category.class: Jov\Bundle\CategoryBundle\Form\Type\CategoryType
+    jov_category.category.manager.api.class: Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
+    jov_category.category.entity.class: Jov\Bundle\CategoryBundle\Entity\Category
+    jov_category.category.form.handler.category.class: Jov\Bundle\CategoryBundle\Form\Handler\CategoryHandler
 
 services:
     jov_category.form.type.category:
         class: %jov_category.form.type.category.class%
         arguments: [ @security.context ]
+
+    jov_category.category.manager.api:
+        class: %jov_category.category.manager.api.class%
+        arguments:
+            - %jov_category.category.entity.class%
+            - @doctrine.orm.entity_manager
+
+    jov_category.form.category.api:
+        class: Symfony\Component\Form\Form
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments: ["jov_category_category_form", "jov_category_category", null]
+
+    jov_category.form.handler.api:
+        class: %jov_category.category.form.handler.category.class%
+        scope: request
+        arguments:
+            - @jov_category.form.category.api
+            - @request
+            - @doctrine.orm.entity_manager
